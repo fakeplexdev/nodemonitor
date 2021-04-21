@@ -8,7 +8,7 @@ By running the app, and not having BungeeCord on first, will give you this error
 
 ![Bungee](https://i.imgur.com/phVVkSZ.png)
 
-So make sure BungeeCord is on before running NodeMonitor
+So make sure BungeeCord is on before running NodeMonitor.
 
 # Shutdown
 Don't ever just close the app with Ctrl + C! Always execute the "**exit**" command. This will close all servers one by one and then closes the app.
@@ -17,7 +17,7 @@ Don't ever just close the app with Ctrl + C! Always execute the "**exit**" comma
 
 # Commands
 
-- "**add \<group\>**" - Add a new server with given group
+- "**add \<group\>**" - Add a new server with given group.
 
 ![Add](https://i.imgur.com/MMDAueP.png)
 
@@ -25,22 +25,19 @@ Note: You can only add groups that are also in Redis, otherwise:
 
 ![CannotAdd](https://i.imgur.com/AOhHDZq.png)
 
-- "**remove \<group\>**" - Remove a server from the network
+- "**remove \<group\>**" - Remove a server from the network.
 
 ![Remove](https://i.imgur.com/lBpKWBO.png)
 
-- "**fetch \<server\>**" - Retrieve basic information of a server
+- "**fetch \<server\>**" - Retrieve basic information of a server.
 
 ![Fetch](https://i.imgur.com/8yocOFF.png)
 
-- "**list \<all/group\>**" - List all or a given group of servers
+- "**list \<all/group\>**" - List all or a given group of servers.
 
 ![List](https://i.imgur.com/g0qEIEj.png)
 
 ## Credits
-- [@randomdevlol](https://github.com/randomdevlol) - Made all the Shell scripts
+- [@randomdevlol](https://github.com/randomdevlol) - Made all the Shell scripts.
 
 Note: the Shell scripts are a bit modified to work with Fakeplex, but you can use the original scripts too.
-
-## License
-- [MIT](https://choosealicense.com/licenses/mit/)
