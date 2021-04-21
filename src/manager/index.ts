@@ -32,19 +32,23 @@ export function addGroup(group: string): Promise<boolean>
          res(false)
          return
       }
-
-      /* We performed all checks, now it's time to add the actual server through a Shell script */
+      /**
+       * Execute the Shell script asynchronously and resolve when completed.
+       */
       shell(`./script/start.sh ${serverGroup.getParams()}`)
-
       .then(() => 
       {
-         /* Let's push the group to the array. */
+         /**
+          * Let's push the group to the array. 
+          */
          serverGroups.push(serverGroup)
-
-         /* Show information about the newly added server. */
+         /**
+          *  Show information about the newly added server. 
+          */
          showInformation(serverGroup, true)
-
-         /* Resolve the generated server. */
+         /**
+          * Resolve the generated server. 
+          */
          res(true)
       })
       /* Catch error, this cannot happen unless you change the Shell script. */
@@ -64,34 +68,42 @@ export function removeGroup(group: string): Promise<boolean>
    return new Promise<boolean>(res =>
    {
       const serverGroup = serverGroups.filter(groupElement => group === groupElement.group).pop()
-
-      /* The user is trying to remove a server of a group that doesn't exist. */
+      /**
+       * The user is trying to remove a server of a group that doesn't exist. 
+       */
       if (serverGroup == undefined)
       {
          console.log(colors.red(`There are no servers running with group '${group}'.`))
          res(true)
          return
       }
-
+      /**
+       * Execute the Shell script asynchronously and resolve when completed.
+       */
       shell(`./script/kill ${serverGroup.getName()}`)
-
       .then(() =>
       {
-         /* Tell Redis that the server has been deleted in the back-end. */
+         /**
+          * Tell Redis that the server has been deleted in the back-end. 
+          */
          redisClient().del(`serverstatus.minecraft.${serverGroup.getName()}`)
          redisClient().zrem(`serverstatus.mineraft`, serverGroup.getName())
-
-         /* Show information about the newly added server. */
+         /**
+          * Show information about the newly added server. 
+          */
          showInformation(serverGroup, false)
-
-         /* Remove the server from the array */
+         /**
+          * Remove the server from the array.
+          */
          serverGroups.splice(serverGroups.indexOf(serverGroup), 1)
-
-         /* Resolve true because the server got deleted successfully. */
+         /**
+          * Resolve true because the server got deleted successfully. 
+          */
          res(true)
       })
-
-      /* Catch error, this cannot happen unless you change the Shell script. */
+      /**
+       * Catch error, this cannot happen unless you change the Shell script. 
+       */
       .catch(() =>
       {
          console.log(colors.red(`Something went wrong whilst removing '${serverGroup.getName()}'.`))
@@ -100,19 +112,19 @@ export function removeGroup(group: string): Promise<boolean>
    })  
 }
 /**
- * 
+ * Retrieve a server group by matching the prefix with an object.
  */
 export function getByPrefix(server: string): ServerGroup | null
 {
-   let serverGroup: ServerGroup | null = null
+   let serverGroup: any
 
-   serverGroups.forEach(group => 
+   for (serverGroup in serverGroups)
    {
-      if (group.getName() === server)
+      if (serverGroup.getName() === server)
       {
-         serverGroup = group
-      }
-   })
+         return serverGroup
+      } 
+   }
 
-   return serverGroup
+   return null
 }
