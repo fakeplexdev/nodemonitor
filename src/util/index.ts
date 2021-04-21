@@ -29,7 +29,7 @@ export function shell(script: string): Promise<void>
  * @param server The server from which the information gets retrieved.
  * @returns A Promise for the completion of the callback.
  */
-export async function status(server: ServerGroup | BungeeCord): Promise<boolean>
+export function status(server: ServerGroup | BungeeCord): Promise<boolean>
 {
    return new Promise<boolean>((res, rej) =>
    {
@@ -40,7 +40,7 @@ export async function status(server: ServerGroup | BungeeCord): Promise<boolean>
  * @param group the given group which will get generated.
  * @param groupArray The current array of all the server groups.
  */
-export async function generateGroup(group: string, groupArray: ServerGroup[]): Promise<ServerGroup | null>
+export function generateGroup(group: string, groupArray: ServerGroup[]): Promise<ServerGroup | null>
 {
    return new Promise<ServerGroup | null>(res =>
    {
@@ -120,7 +120,7 @@ function connectBungee(retry: number, maxRetry: number): Promise<boolean>
  * When the app initially starts, this gets executed.
  * @returns A Promise for the completion of the callback.
  */
-export async function attemptConnectBungee(): Promise<boolean>
+export function attemptConnectBungee(): Promise<boolean>
 {
    return new Promise<boolean>(async res =>
    {
