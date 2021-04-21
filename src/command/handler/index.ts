@@ -6,6 +6,9 @@ import Close from '../type/closeCommand'
 
 class CommandHandler
 {
+   /**
+    * An array of all commands which are executable from the input.
+    */
    private commands: Command<boolean | void>[] = []
 
    constructor()
@@ -15,14 +18,9 @@ class CommandHandler
        */
       this.commands.push
       (
-         Add,
-         Remove,
-         Fetch,
-         List,
-         Close
+         Add, Remove, Fetch, List, Close
       )
    }
-
    /**
     * Find the correct command executor and return it to the input.
     * @param type The command which corresponds to the executor.

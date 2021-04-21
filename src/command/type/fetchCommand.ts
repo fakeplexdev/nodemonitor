@@ -36,7 +36,6 @@ class Fetch extends Command<boolean>
           * the information back from translated bytes. 
           */
          mc.status(`${server.publicAddr}`, { port: server.port, enableSRV: true})
-
          .then(response => 
          {
             console.log('---------------------------------------------------')

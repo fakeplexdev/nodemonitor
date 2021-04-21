@@ -30,7 +30,9 @@ class Close extends Command<boolean>
             removeGroup(server.group)
             countDeleted++
          }
-
+         /**
+          * Give the user a goodbye message and close the process.
+          */
          console.log(colors.green(`\nA total of ${countDeleted} servers got stopped`))
          console.log(colors.bgCyan('Thank you for using NodeMonitor on your network.'))
          process.exit(1)

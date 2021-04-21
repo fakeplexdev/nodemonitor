@@ -10,18 +10,22 @@ let client: RedisClient | null = null
  */
 export function attemptConnectRedis(): void
 {
-   //Authenticate
+   /**
+    * Authenticate.
+    */
    client = redis.createClient(6379, process.env.REDIS_IP!);
    client.auth(process.env.REDIS_PASSWORD!)
-
-   //Assert errors
+   /**
+    * Assert errors.
+    */
    client.on('error', error =>
    {
       assert(error instanceof Error)
       assert(redis instanceof AggregateError)
       assert(redis instanceof AbortError)
-   
-      // The set and get are aggregated in here v
+      /**
+       * The set and get are aggregated.
+       */
       assert.strictEqual(error.message.length, 2)
       assert.strictEqual(error.name, 'NR_CLOSED')
    })

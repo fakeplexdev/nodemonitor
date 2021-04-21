@@ -27,7 +27,6 @@ class List extends Command<boolean>
                res(true)
                return
             }
-            
             /**
              * Listing all servers.
              */

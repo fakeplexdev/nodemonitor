@@ -83,21 +83,26 @@ function connectBungee(retry: number, maxRetry: number): Promise<boolean>
 {
    return new Promise<boolean>(async res =>
    {
-      /* BungeeCord is already running, so return success. */
+      /**
+       * BungeeCord is already running, so return success. 
+       */
       if (bungeeCord.isOnline()) res(true)
-
-      /* Await the value of the status of BungeeCord. */
+      /**
+       * Await the value of the status of BungeeCord. 
+       */
       const bungeeStatus = await status(bungeeCord)
-    
-      /* BungeeCord is running so we return true. */
+      /**
+       * BungeeCord is running so we return true. 
+       */
       if (bungeeStatus)
       {
          console.log(colors.gray(`- Checking BungeeCord connectivity: ${colors.green(`${bungeeStatus}`)}\n`))
          res(true)
          return
       }
-
-      /* If the max retries have reached, we close the program. */
+      /**
+       * If the max retries have reached, we close the program. 
+       */
       if (retry === maxRetry)
       {
          console.log(colors.red('Please run BungeeCord first, then run NodeMonitor.'))
@@ -105,14 +110,16 @@ function connectBungee(retry: number, maxRetry: number): Promise<boolean>
          res(false)
          return
       }
-     
-      /* Tell the user that BungeeCord is not running. */
+      /**
+       * Tell the user that BungeeCord is not running. 
+       */
       console.log(colors.bgRed('===== BUNGEECORD IS NOT RUNNING ====='))
       console.log(colors.red(`Searching for: ${bungeeCord.publicAddr}:${bungeeCord.port}`))
       console.log(colors.bgRed('===== BUNGEECORD IS NOT RUNNING ====='))
       console.log(`Trying again in 5 seconds... (${maxRetry - retry} tries left)\n\n`)
-
-      /* Retry in five seconds. */
+      /**
+       * Retry in five seconds.
+       */
       wait(5).then(() => res(false))
    })
 }

@@ -16,22 +16,29 @@ class Input
 
       this.input()
    }
-
+   /**
+    * The base input method which gets called after a command
+    * is done with the execution of its promise. 
+    */
    async input()
    {
       prompt.get([':'], async (error, result) => 
       {
-         /* Check for errors */
+         /**
+          * Check for errors, if there's any, we close the program and output the error(s). 
+          */
          if (error)
          {
             console.log(error);
             process.exit(0)
          }
-
-         /* Casting the command and its args to an array of strings */
+         /**
+          * Casting the command and its args to an array of strings.
+          */
          const args = result[':'].toString().split(' ')
-
-         /* All commands have a min and max of 2 arguments */
+         /**
+          * All commands have a min and max of two arguments.
+          */
          if (args.length != 2 && args[0] !== 'exit')
          {
             console.log(`${colors.red('error')}: Too ${args.length > 2 ? 'many' : 'few'} arguments`)
@@ -49,7 +56,9 @@ class Input
             .then(command => command.execute(args).then(() => this.input()))
             .catch(() => 
             {
-               /* Tell the user that the command doesn't exist. */
+               /** 
+                * Tell the user that the command doesn't exist.
+                */
                console.log(`${colors.red('error')}: This command does not exist`)
                this.input() 
             })
