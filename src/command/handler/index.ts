@@ -34,7 +34,9 @@ class CommandHandler
 
          for (command in this.commands)
          {
-            /* Cast it as a Command and resolve it. */
+            /**
+             * Cast it as a Command and resolve it. 
+             */
             const ce: Command<boolean | void> = command
             if (ce.command === type)
             {
