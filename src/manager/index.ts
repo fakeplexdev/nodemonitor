@@ -3,7 +3,7 @@ import { redisClient } from '../redis'
 import { ServerGroup } from '../util/servergroup'
 import colors from 'colors/safe'
 /**
- * A set of all servers that are running.
+ * An array of all servers that are running.
  */
 export let serverGroups: ServerGroup[] = []
 /**
@@ -14,9 +14,13 @@ export function addGroup(group: string): Promise<boolean>
 {
    return new Promise<boolean>(async res =>
    {
+      /**
+       * The newly generated server which we will later push in the array.
+       */
       const serverGroup = await generateGroup(group, serverGroups)
-
-      /* The server could not get added, therefore we return false and return */
+      /**
+       * The server could not get added, therefore we return false and return.
+       */
       if (serverGroup == null)
       {
          console.log(colors.red(`The server with group: ${group} could not be added!`))
@@ -24,8 +28,9 @@ export function addGroup(group: string): Promise<boolean>
          res(false)
          return
       }
-
-      /* We're gonna check if the generated serverGroup already exists. */
+      /**
+       * We're gonna check if the generated serverGroup already exists. 
+       */
       if (getByPrefix(serverGroup.getName()))
       {
          console.log(colors.red(`Attempting to add '${serverGroup.getName()}', but it already exists.`))
@@ -51,7 +56,9 @@ export function addGroup(group: string): Promise<boolean>
           */
          res(true)
       })
-      /* Catch error, this cannot happen unless you change the Shell script. */
+      /**
+       * Catch error, this cannot happen unless you change the Shell script. 
+       */
       .catch(() =>
       {
          console.log(colors.red(`Something went wrong whilst adding '${serverGroup.getName()}'.`))
