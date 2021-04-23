@@ -3,6 +3,7 @@ import Remove from '../type/removeCommand'
 import Fetch from '../type/fetchCommand'
 import List from '../type/listCommand'
 import Close from '../type/closeCommand'
+import Command from '../'
 
 class CommandHandler
 {
