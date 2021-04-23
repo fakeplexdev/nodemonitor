@@ -1,6 +1,7 @@
 import { getByPrefix } from '../../manager'
 import mc from 'minecraft-server-util'
 import colors from 'colors/safe'
+import Command from '../'
 
 class Fetch extends Command<boolean>
 {

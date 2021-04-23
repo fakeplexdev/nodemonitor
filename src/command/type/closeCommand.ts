@@ -1,6 +1,7 @@
 import { ServerGroup } from '../../util/servergroup'
 import { serverGroups, removeGroup } from '../../manager'
 import colors from 'colors/safe'
+import Command from '../'
 
 class Close extends Command<boolean>
 {

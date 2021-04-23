@@ -1,4 +1,5 @@
 import { removeGroup } from '../../manager'
+import Command from '../'
 
 class Remove extends Command<boolean>
 {

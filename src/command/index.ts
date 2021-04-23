@@ -25,3 +25,5 @@ abstract class Command<T>
       return new Promise<T>(() => {})
    }
 }
+
+export default Command

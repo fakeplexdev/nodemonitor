@@ -1,5 +1,6 @@
 import colors from 'colors/safe'
 import { serverGroups } from '../../manager'
+import Command from '../'
 
 class List extends Command<boolean>
 {

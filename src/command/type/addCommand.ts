@@ -1,4 +1,5 @@
 import { addGroup } from '../../manager'
+import Command from '../'
 
 class Add extends Command<boolean>
 {
